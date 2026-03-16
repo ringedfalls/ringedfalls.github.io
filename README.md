@@ -1,6 +1,4 @@
-# ringedfalls.github.io
-THE EIGHTH FRONT
-Israel's Information War on American Democracy
+# THE EIGHTH FRONT: Israel's Information War on American Democracy
 The Full Architecture: From Kill Lists in Gaza to Deportation in America — How Palantir, AIPAC, the ADL, the Ellison Empire, and $600 Million in Adelson Money Built the Machine That Controls What You See
 
 In July 2025, Israeli Prime Minister Benjamin Netanyahu officially declared information warfare as Israel's "eighth front." This investigative report documents the complete architecture behind that declaration — a system spanning political donations, congressional lobbying, media consolidation, AI-powered surveillance, platform censorship, and the suppression of domestic dissent.
