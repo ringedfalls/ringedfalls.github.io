@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Eighth Front — Israel's Information War on American Democracy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0a0a0a;
+  --white: #f5f0eb;
+  --red: #c41e1e;
+  --red-glow: #ff2b2b;
+  --pale: #d4cfc8;
+  --dark-gray: #1a1a1a;
+  --mid-gray: #2a2a2a;
+  --accent-gold: #c4a35a;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 80%, rgba(196,30,30,0.12) 0%, transparent 60%),
+              var(--black);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.015) 2px,
+    rgba(255,255,255,0.015) 4px
+  );
+  pointer-events: none;
+}
+
+.hero-front-label {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(12px, 1.4vw, 16px);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(56px, 10vw, 140px);
+  line-height: 0.95;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--red);
+  font-size: 0.45em;
+  letter-spacing: 6px;
+  line-height: 1.4;
+}
+
+.hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(16px, 2.2vw, 26px);
+  font-weight: 400;
+  color: var(--pale);
+  max-width: 700px;
+  line-height: 1.5;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s forwards;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: rgba(245,240,235,0.3);
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+/* ---- PILLAR OVERVIEW ---- */
+.pillar-overview {
+  padding: 100px 24px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2px;
+}
+
+.pillar-card {
+  background: var(--dark-gray);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.pillar-card:hover {
+  background: var(--mid-gray);
+}
+
+.pillar-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 72px;
+  color: rgba(196,30,30,0.15);
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  line-height: 1;
+}
+
+.pillar-card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  color: var(--red);
+}
+
+.pillar-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+/* ---- DEEP SECTION ---- */
+.deep-section {
+  padding: 80px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(196,30,30,0.2);
+}
+
+.deep-section .section-title {
+  margin-bottom: 16px;
+}
+
+.deep-section .section-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--pale);
+  margin-bottom: 48px;
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+/* stat rows */
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: 48px;
+}
+
+.stat-box {
+  flex: 1 1 200px;
+  background: var(--dark-gray);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--red);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--pale);
+  margin-top: 8px;
+}
+
+/* quote block */
+.quote-block {
+  border-left: 3px solid var(--red);
+  padding: 24px 32px;
+  margin: 40px 0;
+  background: rgba(196,30,30,0.04);
+}
+
+.quote-block p {
+  font-family: 'Barlow', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--white);
+}
+
+.quote-block cite {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--red);
+  font-style: normal;
+}
+
+/* timeline */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  margin: 40px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 24px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -33px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.timeline-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--red);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.timeline-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+.timeline-text strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* connection map */
+.connection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  margin: 40px 0;
+}
+
+.connection-node {
+  background: var(--dark-gray);
+  padding: 28px 24px;
+  border-left: 3px solid var(--red);
+}
+
+.connection-node h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.connection-node p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+/* detail-list for chapter details */
+.detail-item {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.detail-item:last-child { border-bottom: none; }
+
+.detail-item h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.detail-item p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+/* full-bleed red banner */
+.red-banner {
+  background: var(--red);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.red-banner .section-title {
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.red-banner p {
+  color: rgba(255,255,255,0.85);
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* cost section */
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  margin: 40px 0;
+}
+
+.cost-card {
+  padding: 40px 32px;
+  background: var(--dark-gray);
+}
+
+.cost-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cost-card.palestinians h3 { color: var(--red); }
+.cost-card.americans h3 { color: var(--accent-gold); }
+.cost-card.israelis h3 { color: var(--pale); }
+
+.cost-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+/* counter strategy */
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  margin: 40px 0;
+}
+
+.counter-card {
+  background: var(--dark-gray);
+  padding: 32px 28px;
+  position: relative;
+}
+
+.counter-card::before {
+  content: attr(data-num);
+  font-family: 'Anton', sans-serif;
+  font-size: 48px;
+  color: rgba(196,168,90,0.12);
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.counter-card h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+}
+
+.counter-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--pale);
+  font-weight: 300;
+}
+
+/* footer */
+.infographic-footer {
+  padding: 80px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(196,30,30,0.2);
+}
+
+.infographic-footer p {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(245,240,235,0.3);
+  line-height: 2;
+}
+
+.infographic-footer .closing-line {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--red);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 24px;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* divider lines */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--red), transparent);
+  margin: 0;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+  .pillar-grid, .connection-grid, .cost-grid, .counter-grid {
+    grid-template-columns: 1fr;
+  }
+  .stat-row { flex-direction: column; }
+  .timeline { padding-left: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-front-label">Investigative Report</div>
+  <h1>
+    THE 8TH FRONT
+    <span>Israel's Information War<br>on American Democracy</span>
+  </h1>
+  <p class="hero-sub">
+    A multi-billion-dollar architecture of lobbying, media consolidation, platform capture, 
+    surveillance technology, and political spending — all designed to control what Americans 
+    can see, say, and think about Palestine.
+  </p>
+  <div class="hero-scroll">Scroll ↓</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== FIVE PILLARS ========== -->
+<section class="pillar-overview">
+  <div class="section-label">Architecture of Control</div>
+  <div class="section-title">The Five Pillars</div>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <h3>Project Esther</h3>
+      <p>A Heritage Foundation blueprint to dismantle the pro-Palestine movement within 12–24 months by labeling all critics of Israel as a "Hamas Support Network." More than half its proposals have already been enacted by the Trump administration.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02</div>
+      <h3>The Ellison Media Empire</h3>
+      <p>Larry and David Ellison's consolidation of CBS, Paramount, Nickelodeon, MTV, TikTok's U.S. algorithm, and a pending bid for CNN/HBO — under one of the largest private donors to the Israeli military, who donated $26.6M to the IDF.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <h3>AIPAC's Political Machine</h3>
+      <p>$126.9 million in combined spending during the 2023–2024 election cycle — the largest PAC contributor in American history. 349 members of Congress (65%) received AIPAC funding. Unseated the first two lawmakers to call for a ceasefire.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">04</div>
+      <h3>The ADL as Info-War Arm</h3>
+      <p>CEO Jonathan Greenblatt testified before the Israeli Knesset calling to "capture TikTok" and invoked the pager attack on Lebanon as a model for fighting online dissent. The ADL monitors social media, video games, crypto, LLMs, and works directly with the FBI.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">05</div>
+      <h3>Meta's Censorship Apparatus</h3>
+      <p>Leaked whistleblower data revealed a 94% compliance rate with Israeli government takedown requests. Over 90,000 posts removed at an average speed of 30 seconds. An estimated 38.8 million additional posts algorithmically suppressed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 1: ORIGINS ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 01</div>
+  <div class="section-title">Origins & Official Doctrine</div>
+  <div class="section-subtitle">
+    In August 2025, Netanyahu publicly declared information warfare as Israel's "eighth front" — 
+    not metaphorical, but a doctrinal shift placing narrative control on par with military campaigns.
+  </div>
+
+  <div class="quote-block">
+    <p>"Weapons change over time. You can't fight today with swords and you can't fight with cavalry. You have to fight with the weapons that apply to the battlefield, and one of the most important ones is social media."</p>
+    <cite>Benjamin Netanyahu — Israeli Consulate, New York, September 2025</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"TikTok is the most important purchase going on right now. I hope it goes through, because it can be consequential."</p>
+    <cite>Benjamin Netanyahu — Same meeting, leaked footage</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"If we can get TikTok and X, we'll get a lot."</p>
+    <cite>Benjamin Netanyahu — Same meeting</cite>
+  </div>
+
+  <p style="font-size:15px;line-height:1.7;color:var(--pale);font-weight:300;margin-top:24px;">
+    A month after his Newsmax declaration, Netanyahu convened a private meeting with American pro-Israel social media influencers at the Israeli Consulate in New York — during a UN General Assembly session that saw one of the largest diplomatic walkouts in recent memory. In leaked footage, he was remarkably candid: social media platforms are weapons, TikTok's acquisition is a strategic priority, and Elon Musk is an ally to be courted.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 2: PROJECT ESTHER ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 02</div>
+  <div class="section-title">Project Esther</div>
+  <div class="section-subtitle">
+    The Heritage Foundation's 44-page blueprint to dismantle the pro-Palestine movement in America. 
+    Named after the biblical figure who saved the Jewish people from genocide — but its real purpose 
+    is branding critics of Israel as terrorists.
+  </div>
+
+  <div class="quote-block">
+    <p>"Branding a broad range of critics of Israel as 'effectively a terrorist support network,' so that they could be deported, defunded, sued, fired, expelled, ostracized and otherwise excluded from what it considered 'open society.'"</p>
+    <cite>The New York Times, May 2025 — describing Project Esther's core objective</cite>
+  </div>
+
+  <div class="detail-item">
+    <h4>Authored By</h4>
+    <p>Victoria Coates, Robert Greenway, and Daniel Flesch — Heritage Foundation operatives who drafted the plan following October 7, 2023. Politico described it as "a lesser-known blueprint from the same creators of Project 2025."</p>
+  </div>
+
+  <div class="detail-item">
+    <h4>Key Proposals Already Enacted</h4>
+    <p>Reclassification of anti-Zionism as antisemitism in federal policy. University funding threatened for institutions that don't comply. Deportation of legal residents for political speech (the Mahmoud Khalil precedent). Expansion of IHRA antisemitism definition — which includes criticism of Israel — toward federal codification. Defunding of organizations with ties to Palestine solidarity movements.</p>
+  </div>
+
+  <div class="detail-item">
+    <h4>The Crushing of Student Activists</h4>
+    <p>Mahmoud Khalil, a Columbia University student and legal permanent resident, was detained and ordered deported for attending pro-Palestine protests. DHS told him to "self-deport." Amnesty International confirmed Palantir and Babel Street technology was used to target pro-Palestine students. Others targeted include Mohsen Mahdawi, Rümeysa Öztürk, and Badar Khan Suri — using the Cold War-era McCarran-Walter Act, weaponized against political speech.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 3: PALANTIR ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 03</div>
+  <div class="section-title">Palantir</div>
+  <div class="section-subtitle">
+    The same company that builds AI targeting systems used in the killing of Palestinians in Gaza 
+    also builds the deportation infrastructure used to silence Palestinian voices in America.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-num">$900M+</div>
+      <div class="stat-label">Federal contracts since Trump took office</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$30M</div>
+      <div class="stat-label">ImmigrationOS contract for ICE</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$15M</div>
+      <div class="stat-label">Peter Thiel spent on JD Vance's 2022 Senate campaign</div>
+    </div>
+  </div>
+
+  <div class="connection-grid">
+    <div class="connection-node">
+      <h4>In Gaza: The Kill List</h4>
+      <p>Palantir agreed to a strategic partnership with the Israeli Defense Ministry in January 2024. Its AI systems — including programs called Lavender, Gospel, and "Where's Daddy" — are trained on surveillance data to generate kill lists reviewed by humans for an average of 20 seconds. CEO Alex Karp acknowledged: "Our product is used on occasion to kill people."</p>
+    </div>
+    <div class="connection-node">
+      <h4>In America: ImmigrationOS</h4>
+      <p>The same company builds the AI-powered deportation machine. ImmigrationOS pulls data from government and commercial databases to identify, track, and process deportation targets. As the Berkeley Political Review concluded: "ImmigrationOS is essentially the American version of the IDF's murder machine."</p>
+    </div>
+    <div class="connection-node">
+      <h4>The Revolving Door</h4>
+      <p>Stephen Miller, architect of Trump's immigration policy, holds Palantir stock — profiting from the deportation tools he designed policy to require. Mike Gallagher, lead sponsor of the TikTok ban bill, joined Palantir immediately after leaving Congress. Palantir was his top contributor ($44K in 2023–2024). Rep. James Comer bought Palantir stock the day after Trump's inauguration.</p>
+    </div>
+    <div class="connection-node">
+      <h4>"The Scouring of the Shire"</h4>
+      <p>In May 2025, thirteen former Palantir employees published an open letter warning that the company's ethical guardrails were being systematically dismantled. Protesters carried banners reading: "First Palantir Surveils, then IDF Kills. First Palantir Tracks, then ICE Attacks."</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 4: ELLISON & TIKTOK ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 04</div>
+  <div class="section-title">The Ellison Empire<br>&amp; TikTok Capture</div>
+  <div class="section-subtitle">
+    The world's second-richest man, one of the largest private donors to the Israeli military, 
+    now controls an information infrastructure without precedent in American history.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-num">$26.6M</div>
+      <div class="stat-label">Larry Ellison donated to the IDF</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$8B</div>
+      <div class="stat-label">Skydance-Paramount merger</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">170M</div>
+      <div class="stat-label">American TikTok users now under Oracle's algorithm control</div>
+    </div>
+  </div>
+
+  <div class="detail-item">
+    <h4>The Media Empire</h4>
+    <p>Through the Skydance-Paramount merger, the Ellison family controls CBS, Paramount Pictures, Nickelodeon, MTV, Comedy Central, BET, Showtime, and Paramount+. David Ellison immediately installed Bari Weiss — described by The Intercept as a "staunch Zionist whose Free Press has stoked genocide denial" — as CBS News editor-in-chief. A pending bid to acquire Warner Bros. Discovery would add CNN, HBO, TBS, TNT, and Discovery to the portfolio.</p>
+  </div>
+
+  <div class="detail-item">
+    <h4>The TikTok Deal</h4>
+    <p>In January 2026, TikTok closed a ~$14 billion deal giving Oracle a 15% stake and oversight of the platform's algorithms and content moderation. The New York Times reported bluntly: the new venture will "moderate content in TikTok's feed, deciding which posts to leave up and which to take down." No person will have more power over what 170 million American TikTok users see than Larry Ellison.</p>
+  </div>
+
+  <div class="quote-block">
+    <p>"I love my employees, and if they don't agree with our mission to support the State of Israel then maybe we aren't the right company for them."</p>
+    <cite>Safra Catz — Oracle CEO, Jerusalem, 2021</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"I feel a deep emotional connection to the State of Israel and the Israeli people. We love the country of Israel and we'll do everything we can to support the country of Israel."</p>
+    <cite>Larry Ellison — FIDF Gala, 2014</cite>
+  </div>
+
+  <h4 style="font-family:'Barlow Condensed';font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin:40px 0 20px;">The Legislative Pipeline to TikTok Ban</h4>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">NOV 1, 2023</div>
+      <div class="timeline-text"><strong>Mike Gallagher</strong> publishes "Why Do Young Americans Support Hamas? Look at TikTok" in Bari Weiss's The Free Press. Israel has killed ~8,800 Palestinians by this date.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">NOV 8, 2023</div>
+      <div class="timeline-text"><strong>Jonathan Greenblatt (ADL)</strong> joins Gallagher to announce the STOP HATE Act, explicitly targeting "China-owned TikTok." Leaked audio from this period: "We really have a TikTok problem, a Gen Z problem."</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">MAR 5, 2024</div>
+      <div class="timeline-text">Gallagher introduces <strong>H.R. 7521</strong> — "Protecting Americans from Foreign Adversary Controlled Applications Act." The anti-Israel framing is scrubbed; it's now couched as a national security issue about "Chinese influence."</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">MAR 13, 2024</div>
+      <div class="timeline-text">House passes H.R. 7521 by a vote of <strong>352–65</strong>. 14 of Gaza's 36 hospitals have already been forced to shut down.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">MAR 22, 2024</div>
+      <div class="timeline-text">News breaks that <strong>Gallagher will resign from Congress and join Palantir</strong> — the surveillance company that lobbied for the TikTok ban. Palantir exec Jacob Helberg worked with Gallagher to build support for the bill.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">APR 20, 2024</div>
+      <div class="timeline-text">Ban bill bundled into a <strong>$95 billion foreign aid package for Ukraine, Israel, and Taiwan</strong>. Passes 360–58. Biden signs it April 24.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">JAN 7, 2025</div>
+      <div class="timeline-text">Greenblatt tells the <strong>Israeli Knesset</strong> they must "capture TikTok."</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">JAN 21, 2025</div>
+      <div class="timeline-text"><strong>Trump's second day in office</strong>: publicly endorses Larry Ellison buying TikTok. "Larry, let's negotiate in front of the media."</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">JAN 2026</div>
+      <div class="timeline-text"><strong>Deal closes.</strong> Oracle gets 15% stake + control over algorithm and content moderation. Netanyahu calls it "the most important purchase going on right now."</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 5: META ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 05</div>
+  <div class="section-title">Meta — The Censorship Machine</div>
+  <div class="section-subtitle">
+    In April 2025, Drop Site News published internal Meta data from company whistleblowers — 
+    revealing the largest documented censorship operation targeting a single population in social media history.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-num">94%</div>
+      <div class="stat-label">Israeli government takedown requests complied with</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">90,000+</div>
+      <div class="stat-label">Posts removed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">30 sec</div>
+      <div class="stat-label">Average removal speed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">38.8M</div>
+      <div class="stat-label">Posts algorithmically suppressed</div>
+    </div>
+  </div>
+
+  <p style="font-size:15px;line-height:1.7;color:var(--pale);font-weight:300;">
+    The AI censorship systems are self-reinforcing: automated moderation tools learn from the patterns of previous censorship, creating a permanent bias in what content reaches users. Palestinian journalists' accounts were suspended — including the posthumous deletion of accounts belonging to journalists killed by Israeli forces. Digital documentation critical for war crimes prosecution was erased in real time. Meanwhile, Israel saw a 37% rise in news reach on Meta platforms. No major U.S. newspaper covered the story.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 6: AIPAC ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 06</div>
+  <div class="section-title">AIPAC — Congressional Capture</div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-num">$126.9M</div>
+      <div class="stat-label">AIPAC combined spending 2023–2024</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">65%</div>
+      <div class="stat-label">Of Congress received AIPAC funding</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">$215M</div>
+      <div class="stat-label">Miriam Adelson's Preserve America PAC alone</div>
+    </div>
+  </div>
+
+  <div class="detail-item">
+    <h4>Unseating Dissent</h4>
+    <p>AIPAC's super PAC, the United Democracy Project, unseated Representatives Jamaal Bowman and Cori Bush — the first in Congress to call for a ceasefire — in the most expensive House primary campaigns in history. The ads never mentioned Israel. AIPAC targeted 389 of 469 contested seats in 2024.</p>
+  </div>
+
+  <div class="detail-item">
+    <h4>The Adelson Investment</h4>
+    <p>Miriam Adelson gave $106M to Trump in 2024 alone — more than Elon Musk's $75M. In exchange: the embassy was moved to Jerusalem, the Golan Heights recognized, West Bank annexation pursued, and Secretary of State Rubio appointed at her request. Track AIPAC uncovered over $230 million in pro-Israel spending benefiting Trump since 2020.</p>
+  </div>
+
+  <div class="detail-item">
+    <h4>Access Purchased</h4>
+    <p>At AIPAC's 2025 Congressional Summit, CEO Elliott Brandt publicly boasted of "cultivated influence" with three top national security officials in the Trump administration, naming National Security Advisor Mike Waltz as someone who would give AIPAC "access" to internal government discussions. JD Vance received $167,000 from the Israel lobby — but his mentor Peter Thiel, Palantir co-founder, spent $15 million on Vance's 2022 Senate campaign.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CHAPTER 7: ADL ========== -->
+<section class="deep-section">
+  <div class="section-label">Chapter 07</div>
+  <div class="section-title">The ADL — From Civil Rights<br>to Information Warfare</div>
+
+  <div class="quote-block">
+    <p>"Capturing TikTok might seem less meaningful than holding on to Mount Hermon. Libelous tweets certainly might seem less deadly than missiles from Yemen. But this is urgent because the next war will be decided based on how Israel and its allies perform online as much as offline."</p>
+    <cite>Jonathan Greenblatt — Israeli Knesset, January 2025</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"We need the kind of genius that manufactured Apollo Gold Pagers and infiltrated Hezbollah for over a decade to prepare for this battle."</p>
+    <cite>Jonathan Greenblatt — Same hearing, invoking the pager attack that killed and maimed thousands</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"We have a major, major, major generational problem … we really have a TikTok problem, a Gen-Z problem."</p>
+    <cite>Jonathan Greenblatt — Leaked audio, late 2023. The "problem" was young Americans seeing footage from Gaza.</cite>
+  </div>
+
+  <div class="detail-item">
+    <h4>Surveillance Apparatus</h4>
+    <p>Greenblatt has publicly stated the ADL monitors "social media, messaging apps, video games, cryptocurrency, podcasts, short-form video, Wikipedia, and large language models." The ADL works directly with the FBI, writes curriculum for schools — including curriculum for "Evangelical Hispanic Sunday schools" to promote Zionist positions to children — advises platforms on content moderation, and pressured TikTok to hire former IDF instructor Erica Mindel.</p>
+  </div>
+</section>
+
+<!-- ========== RED BANNER: COST ========== -->
+<section class="red-banner">
+  <div class="section-title">The Full Cost</div>
+  <p>
+    The eighth front is not a foreign policy story. It is an American story — about who controls 
+    what you can see, who profits from what you can't, and what happens to those who refuse to be silenced.
+  </p>
+</section>
+
+<section class="deep-section">
+  <div class="cost-grid">
+    <div class="cost-card palestinians">
+      <h3>For Palestinians</h3>
+      <p>Over 67,000 killed in Gaza since October 2023. A classified Israeli military database revealed 83% of the dead were civilians. Famine engineered as a weapon of war. Journalists' accounts deleted — including posthumously. 38.8 million posts suppressed. AI systems trained on surveillance data to generate kill lists with 20-second human review. Digital documentation critical for war crimes prosecution erased in real time. Students deported from U.S. universities for attending protests.</p>
+    </div>
+    <div class="cost-card americans">
+      <h3>For Americans</h3>
+      <p>First Amendment rights under direct assault. Legal permanent residents deported for attending protests. A Cold War-era law weaponized against speech. 65% of Congress captured by a single foreign-policy lobby. Every major information platform controlled by individuals with documented pro-Israel commitments. $3.8 billion annually in tax-funded military aid. Stephen Miller profits from Palantir stock while designing deportation policies that require Palantir's tools.</p>
+    </div>
+    <div class="cost-card israelis">
+      <h3>For Israelis</h3>
+      <p>The conflation of all criticism with antisemitism silences Israeli dissidents, anti-occupation organizations, and hostage families demanding different policies. The strategy of censorship over statecraft buys time without building peace. Every ICC indictment, every diplomatic walkout, every European recognition of Palestine represents the failure of the information war to substitute for legitimate governance.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== COUNTER STRATEGY ========== -->
+<section class="deep-section">
+  <div class="section-label">Counter-Offensive</div>
+  <div class="section-title">Reversing the 8th Front</div>
+  <div class="section-subtitle">
+    The eighth front depends on a single assumption: that the public will never see the full picture.
+  </div>
+
+  <div class="counter-grid">
+    <div class="counter-card" data-num="01">
+      <h4>Sovereign Infrastructure</h4>
+      <p>Build platforms outside the control of captured tech — Substack, Mastodon, independent newsletters, decentralized media. If every platform can be captured, the movement needs its own.</p>
+    </div>
+    <div class="counter-card" data-num="02">
+      <h4>Follow the Money</h4>
+      <p>Make every dollar visible. Track AIPAC spending, Adelson donations, Palantir contracts, Ellison's IDF contributions. Transparency is the weapon they fear most.</p>
+    </div>
+    <div class="counter-card" data-num="03">
+      <h4>Cross-Movement Solidarity</h4>
+      <p>Connect Palestine solidarity with anti-surveillance, immigrant rights, racial justice, and labor movements. The same tools targeting Palestinians target all dissent.</p>
+    </div>
+    <div class="counter-card" data-num="04">
+      <h4>Divestment Campaigns</h4>
+      <p>Target pension funds, university endowments, and institutional portfolios invested in Palantir, weapons manufacturers, and complicit tech companies. Hit the infrastructure where it's funded.</p>
+    </div>
+    <div class="counter-card" data-num="05">
+      <h4>Run on Refusal</h4>
+      <p>Support candidates who publicly refuse AIPAC money. Make AIPAC funding a liability, not an asset. The lobby's power depends on being invisible.</p>
+    </div>
+    <div class="counter-card" data-num="06">
+      <h4>Legal Resistance</h4>
+      <p>ACLU, CCR, NLG, and constitutional challenges to every Project Esther implementation. Every deportation, every campus crackdown, every speech restriction must be fought in court.</p>
+    </div>
+    <div class="counter-card" data-num="07">
+      <h4>Archive Everything</h4>
+      <p>If platforms can delete documentation, the movement must preserve it independently. Screenshot, download, distribute. The evidence of what is happening cannot live only on servers controlled by the people doing it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== FOOTER ========== -->
+<section class="infographic-footer">
+  <p>
+    Sources include FARA filings · FEC records · State Department transcripts · Knesset committee hearings<br>
+    Drop Site News investigation · The New York Times · The Intercept · Politico · Track AIPAC<br>
+    Berkeley Political Review · Amnesty International · Leaked corporate data
+  </p>
+  <div class="closing-line">
+    The eighth front exists because you saw the truth.<br>
+    They will not stop until you can't.
+  </div>
+</section>
+
+</body>
+</html>
